@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using TMPro; 
 
-public class BinaryConverter : MonoBehaviour
+public class Elemental : MonoBehaviour
 {
     public TMP_InputField inputField; 
     public TMP_Text resultText;        
