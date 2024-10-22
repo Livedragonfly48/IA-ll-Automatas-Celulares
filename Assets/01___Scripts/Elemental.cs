@@ -11,7 +11,6 @@ public class CellularAutomaton : MonoBehaviour
     public TMP_InputField cellsPerRowInput;
     public Button generateFirstRowButton;
     public Button startButton;
-    public Button saveFirstRowButton;
     public Toggle randomToggle;
     public Toggle steppedToggle;
     public GameObject cellPrefab; 
@@ -22,17 +21,15 @@ public class CellularAutomaton : MonoBehaviour
     private int rows;
     private int cellsPerRow;
     private List<GameObject[]> grid = new List<GameObject[]>();
-    private int[] firstRow; 
-    public float cellWidth = 1f; 
+
 
 
     private void Start()
     {
         generateFirstRowButton.onClick.AddListener(GenerateFirstRow);
         startButton.onClick.AddListener(StartSimulation);
-        saveFirstRowButton.onClick.AddListener(SaveFirstRow);
         startButton.gameObject.SetActive(false); 
-        saveFirstRowButton.gameObject.SetActive(false); 
+        
     }
 
 
@@ -65,7 +62,7 @@ public class CellularAutomaton : MonoBehaviour
         rowsInput.gameObject.SetActive(false);
         cellsPerRowInput.gameObject.SetActive(false);
         startButton.gameObject.SetActive(true);
-        saveFirstRowButton.gameObject.SetActive(true);
+      
 
         if (randomToggle.isOn)
         {
@@ -92,7 +89,7 @@ public class CellularAutomaton : MonoBehaviour
             GameObject cell = Instantiate(cellPrefab, gridParent);
             row[i] = cell;
 
-            float xPos = i * cellWidth; 
+            float xPos = i; 
             float yPos = -rowIndex; 
             cell.transform.position = new Vector3(xPos, yPos, 0); 
 
@@ -127,17 +124,6 @@ public class CellularAutomaton : MonoBehaviour
         }
     }
 
-    private void SaveFirstRow()
-    {
-        firstRow = new int[cellsPerRow];
-        for (int i = 0; i < cellsPerRow; i++)
-        {
-            SpriteRenderer renderer = grid[0][i].GetComponent<SpriteRenderer>();
-            firstRow[i] = (renderer.color == Color.black) ? 1 : 0;
-        }
-        Debug.Log("Primera fila guardada: " + string.Join(", ", firstRow));
-        saveFirstRowButton.gameObject.SetActive(false); 
-    }
 
     private void StartSimulation()
     {
@@ -192,7 +178,6 @@ public class CellularAutomaton : MonoBehaviour
         cellsPerRowInput.gameObject.SetActive(true);
         generateFirstRowButton.gameObject.SetActive(true);
         startButton.gameObject.SetActive(false);
-        saveFirstRowButton.gameObject.SetActive(false);
     }
 }
 

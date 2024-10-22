@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
-    public float moveSpeed; 
-    public float zoomSpeed; 
+    public float moveSpeed;  
     public Camera mainCamera;      
     public Slider zoomSlider;     
 
